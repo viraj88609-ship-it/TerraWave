@@ -1,63 +1,237 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cricket Match Updates</title>
-  <meta name="description" content="Explore cricket match schedules, team news and player stories in one place.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307192f'/%3E%3Ccircle cx='32' cy='34' r='17' fill='white'/%3E%3Cpath d='M22 22c8 7 12 17 14 28M28 18c9 7 14 17 16 27' stroke='%232da9e9' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=devMEDIA-width, initial-scale=1.0">
+
+  <title>Destination Preview</title>
+
   <style>
-    :root { color-scheme: dark; --navy:#061426; --blue:#178ed1; --sky:#6ed3ff; --ink:#eaf7ff; --muted:#a9c4d8; --line:rgba(136,210,247,.18); }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; background:radial-gradient(circle at 80% 5%,#123c60 0,transparent 34%),linear-gradient(155deg,#030b14,#07192f 55%,#06101e); color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
-    .shell { width:min(1120px,calc(100% - 32px)); margin:auto; }
-    header { display:flex; align-items:center; justify-content:space-between; padding:22px 0; border-bottom:1px solid var(--line); }
-    .brand { display:flex; align-items:center; gap:11px; font-weight:760; letter-spacing:-.02em; }
-    .ball { width:34px; height:34px; border-radius:50%; background:white; box-shadow:0 0 0 5px rgba(110,211,255,.1); position:relative; }
-    .ball:after { content:""; position:absolute; left:15px; top:3px; width:4px; height:28px; border-left:2px solid var(--blue); border-right:2px solid var(--blue); transform:rotate(-18deg); }
-    .nav-note { color:var(--muted); font-size:.9rem; }
-    main { display:grid; grid-template-columns:1.08fr .92fr; gap:54px; align-items:center; padding:64px 0 46px; }
-    .eyebrow { color:var(--sky); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.82rem; }
-    h1 { font-size:clamp(2.7rem,6vw,5.5rem); line-height:.95; letter-spacing:-.06em; margin:16px 0 22px; max-width:780px; }
-    .intro { font-size:clamp(1.05rem,2vw,1.25rem); line-height:1.65; color:var(--muted); max-width:620px; }
-    .tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
-    .tag { padding:10px 14px; border:1px solid var(--line); background:rgba(16,57,88,.45); border-radius:999px; font-size:.92rem; }
-    .hero { width:100%; aspect-ratio:1; object-fit:cover; border-radius:28px; border:1px solid rgba(110,211,255,.25); box-shadow:0 30px 80px rgba(0,0,0,.38); }
-    .section { padding:32px 0 72px; }
-    .section h2 { font-size:1.8rem; margin:0 0 20px; letter-spacing:-.03em; }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .card { padding:24px; min-height:170px; background:linear-gradient(145deg,rgba(21,60,91,.78),rgba(7,25,47,.82)); border:1px solid var(--line); border-radius:20px; }
-    .card span { display:inline-grid; place-items:center; width:36px; height:36px; border-radius:10px; background:rgba(110,211,255,.12); color:var(--sky); font-weight:800; }
-    .card h3 { margin:19px 0 8px; font-size:1.08rem; }
-    .card p { margin:0; color:var(--muted); line-height:1.55; }
-    footer { padding:24px 0 34px; border-top:1px solid var(--line); color:#7f9db3; font-size:.88rem; }
-    @media (max-width:760px) { header{padding:17px 0}.nav-note{display:none} main{grid-template-columns:1fr;gap:30px;padding:42px 0 30px}.hero{order:-1;border-radius:20px} .cards{grid-template-columns:1fr}.section{padding-bottom:46px} }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f5f6df;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #344054;
+    }
+
+    .card {
+      width: 480px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .preview-text {
+      font-size: 18px;
+      color: #667085;
+      margin-bottom: 18px;
+    }
+
+    .destination {
+      display: inline-block;
+      font-size: 24px;
+      font-weight: 500;
+      color: #0067d9;
+      text-decoration: underline;
+      margin-bottom: 18px;
+    }
+
+    .description {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #667085;
+      margin: 0 0 24px;
+    }
+
+    .security-box {
+      background: #f7f8fa;
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-bottom: 24px;
+    }
+
+    .security-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1d2939;
+      margin-bottom: 18px;
+    }
+
+    .security-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 13px 0;
+      font-size: 14px;
+      color: #475467;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shield {
+      border: 2px solid #0070e0;
+      border-radius: 6px 6px 9px 9px;
+      width: 15px;
+      height: 18px;
+    }
+
+    .eye {
+      width: 19px;
+      height: 12px;
+      border: 2px solid #0070e0;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .eye::after {
+      content: "";
+      width: 4px;
+      height: 4px;
+      background: #0070e0;
+      border-radius: 50%;
+      position: absolute;
+      left: 5px;
+      top: 2px;
+    }
+
+    .check {
+      color: #16a34a;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .continue-btn {
+      width: 100%;
+      height: 48px;
+      border: none;
+      border-radius: 8px;
+      background: #06447f;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .continue-btn:hover {
+      background: #053765;
+    }
+
+    .arrow {
+      font-size: 22px;
+      margin-left: 8px;
+      vertical-align: -1px;
+    }
+
+    .redirect {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #667085;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: calc(100% - 32px);
+        padding: 30px 24px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div class="shell">
-    <header>
-      <div class="brand"><span class="ball" aria-hidden="true"></span><span>Cricket Updates</span></div>
-      <div class="nav-note">Schedules · Team news · Player stories</div>
-    </header>
-    <main>
-      <section>
-        <div class="eyebrow">Cricket coverage</div>
-        <h1>Cricket Match Updates</h1>
-        <p class="intro">Explore match schedules, team news and player stories in one clear, easy-to-read place.</p>
-        <div class="tags" aria-label="Coverage topics"><span class="tag">Match schedules</span><span class="tag">Team news</span><span class="tag">Player stories</span></div>
-      </section>
-      <img class="hero" src="cricket-hero.jpg" alt="Cricket bat, ball and stumps in a stadium">
-    </main>
-    <section class="section" aria-labelledby="coverage-heading">
-      <h2 id="coverage-heading">What you can explore</h2>
-      <div class="cards">
-        <article class="card"><span>01</span><h3>Match schedules</h3><p>Keep upcoming fixtures and match-day timings organised.</p></article>
-        <article class="card"><span>02</span><h3>Team news</h3><p>Read concise updates about squads, preparation and selection.</p></article>
-        <article class="card"><span>03</span><h3>Player stories</h3><p>Discover career highlights, milestones and notable performances.</p></article>
+
+  <div class="card">
+
+    <div class="preview-text">
+      Here's a preview of your destination
+    </div>
+
+    <a href="#" class="destination">
+      MEDIA
+    </a>
+
+    <p class="description">
+      We couldn't retrieve information about this page, but we're
+      reviewing the link for your safety.
+    </p>
+
+    <div class="security-box">
+
+      <div class="security-title">
+        Security check
       </div>
-    </section>
-    <footer>Cricket Updates · Independent sports information</footer>
+
+      <div class="security-item">
+        <span class="icon">
+          <span class="shield"></span>
+        </span>
+        <span>Security scan completed</span>
+      </div>
+
+      <div class="security-item">
+        <span class="icon">
+          <span class="eye"></span>
+        </span>
+        <span>Links monitored for suspicious behavior</span>
+      </div>
+
+      <div class="security-item">
+        <span class="icon check">✓</span>
+        <span>No threats detected at this time</span>
+      </div>
+
+    </div>
+
+    <button class="continue-btn" onclick="continueToSite()">
+      Continue to destination
+      <span class="arrow">→</span>
+    </button>
+
+    <div class="redirect">
+      You'll be redirected in <span id="countdown">2</span> seconds...
+    </div>
+
   </div>
+
+  <script>
+    let seconds = 2;
+
+    const countdown = document.getElementById("countdown");
+
+    const timer = setInterval(() => {
+      seconds--;
+
+      countdown.textContent = seconds;
+
+      if (seconds <= 0) {
+        clearInterval(timer);
+        // Put your legitimate destination URL here if needed.
+        // window.location.href = "https://example.com";
+      }
+    }, 1000);
+
+    function continueToSite() {
+      // Put your legitimate destination URL here.
+      window.location.href = "https://example.com";
+    }
+  </script>
+
 </body>
 </html>
