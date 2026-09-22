@@ -1,237 +1,357 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=devMEDIA-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo</title>
 
-  <title>Destination Preview</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body{
+  background:#0f1020;
+  color:white;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #f5f6df;
-      font-family: Arial, Helvetica, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #344054;
-    }
+.container{
+  display:flex;
+  flex-direction:row-reverse;
+  min-height:100vh;
+}
 
-    .card {
-      width: 480px;
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    }
+.demo{
+  width:70%;
+  background:#111;
+  position:relative;
+}
 
-    .preview-text {
-      font-size: 18px;
-      color: #667085;
-      margin-bottom: 18px;
-    }
+iframe{
+  width:100%;
+  height:100vh;
+  border:none;
+}
 
-    .destination {
-      display: inline-block;
-      font-size: 24px;
-      font-weight: 500;
-      color: #0067d9;
-      text-decoration: underline;
-      margin-bottom: 18px;
-    }
+.right{
+  width:30%;
+  padding:30px 22px;
+  background:linear-gradient(180deg,#181a35,#0b0c18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow-y:auto;
+}
 
-    .description {
-      font-size: 14px;
-      line-height: 1.55;
-      color: #667085;
-      margin: 0 0 24px;
-    }
+.box{
+  width:100%;
+  background:rgba(10,10,10,.88);
+  border:1px solid #FF8C2B;
+  border-radius:22px;
+  padding:26px 20px;
+  text-align:center;
+  box-shadow:0 0 35px rgba(255,140,43,.28);
+}
 
-    .security-box {
-      background: #f7f8fa;
-      border-radius: 14px;
-      padding: 22px 20px;
-      margin-bottom: 24px;
-    }
+.badge{
+  display:inline-block;
+  background:#FF8C2B;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:30px;
+  font-weight:800;
+  margin-bottom:16px;
+}
 
-    .security-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #1d2939;
-      margin-bottom: 18px;
-    }
+h1{
+  font-size:34px;
+  color:#FF8C2B;
+  margin-bottom:10px;
+  text-transform:uppercase;
+}
 
-    .security-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 13px 0;
-      font-size: 14px;
-      color: #475467;
-    }
+.sub{
+  font-size:17px;
+  line-height:1.5;
+  margin-bottom:22px;
+  color:#eee;
+}
 
-    .icon {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.features{
+  display:grid;
+  gap:12px;
+  margin:22px 0;
+}
 
-    .shield {
-      border: 2px solid #0070e0;
-      border-radius: 6px 6px 9px 9px;
-      width: 15px;
-      height: 18px;
-    }
+.feature{
+  background:linear-gradient(90deg,#1b1b1b,#2b2208);
+  border:1px solid rgba(255,170,70,.55);
+  padding:14px;
+  border-radius:14px;
+  font-size:17px;
+  font-weight:700;
+}
 
-    .eye {
-      width: 19px;
-      height: 12px;
-      border: 2px solid #0070e0;
-      border-radius: 50%;
-      position: relative;
-    }
+.feature span{
+  color:#FF8C2B;
+}
 
-    .eye::after {
-      content: "";
-      width: 4px;
-      height: 4px;
-      background: #0070e0;
-      border-radius: 50%;
-      position: absolute;
-      left: 5px;
-      top: 2px;
-    }
+/* Signup Button */
+.signup-btn{
+  display:inline-block;
+  margin-top:8px;
+  padding:9px 16px;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  border-radius:9px;
+  font-size:15px;
+  font-weight:800;
+  border:1px solid #1ebe5d;
+  transition:.3s;
+}
 
-    .check {
-      color: #16a34a;
-      font-size: 21px;
-      font-weight: bold;
-    }
+.signup-btn:hover{
+  background:#1ebe5d;
+  transform:scale(1.03);
+}
 
-    .continue-btn {
-      width: 100%;
-      height: 48px;
-      border: none;
-      border-radius: 8px;
-      background: #06447f;
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+.website-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:16px;
+  font-size:14px;
+  font-weight:bold;
+}
 
-    .continue-btn:hover {
-      background: #053765;
-    }
+.website-row a{
+  text-decoration:none;
+}
 
-    .arrow {
-      font-size: 22px;
-      margin-left: 8px;
-      vertical-align: -1px;
-    }
+.website{
+  color:#25D366;
+}
 
-    .redirect {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 14px;
-      color: #667085;
-    }
+.whatsapp-small{
+  color:#FF8C2B;
+}
 
-    @media (max-width: 600px) {
-      .card {
-        width: calc(100% - 32px);
-        padding: 30px 24px;
-      }
-    }
-  </style>
+.cta{
+  display:block;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  padding:17px;
+  border-radius:16px;
+  font-size:20px;
+  font-weight:900;
+  margin-top:22px;
+  box-shadow:0 8px 18px rgba(37,211,102,.35);
+  transition:.3s;
+}
+
+.cta:hover{
+  transform:scale(1.03);
+  background:#1ebe5d;
+}
+
+/* Floating Signup Button */
+.floating-signup{
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:50;
+  background:#FF8C2B;
+  color:#fff;
+  padding:12px 24px;
+  border-radius:8px;
+  font-size:18px;
+  font-weight:900;
+  border:3px solid #fff;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(255,140,43,0.6);
+  transition:.3s;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.floating-signup:hover{
+  transform:translateX(-50%) scale(1.08);
+  background:#E66A1A;
+  box-shadow:0 12px 25px rgba(255,140,43,0.8);
+}
+
+.trust{
+  margin-top:16px;
+  color:#ccc;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.footer{
+  margin-top:18px;
+  font-size:12px;
+  color:#aaa;
+  line-height:1.5;
+}
+
+@media(max-width:768px){
+  .container{
+    flex-direction:column-reverse;
+  }
+
+  .demo,
+  .right{
+    width:100%;
+  }
+
+  iframe{
+    height:500px;
+  }
+
+  .right{
+    padding:20px;
+  }
+}
+
+@media(max-width:480px){
+  h1{
+    font-size:28px;
+  }
+
+  .sub{
+    font-size:16px;
+  }
+
+  .feature{
+    font-size:16px;
+    padding:12px;
+  }
+
+  .signup-btn{
+    font-size:14px;
+    padding:8px 13px;
+  }
+
+  .cta{
+    font-size:18px;
+    padding:15px;
+  }
+
+  .website-row{
+    flex-direction:column;
+    gap:8px;
+  }
+}
+</style>
+
 </head>
 
 <body>
 
-  <div class="card">
+<div class="container">
 
-    <div class="preview-text">
-      Here's a preview of your destination
+  <div class="demo">
+    <a href="https://icecric.com/clk?src=27705d9eff" target="_blank" rel="noopener noreferrer" class="floating-signup">🔥 CLICK ON SIGNUP 🔥</a>
+    <iframe src="https://icecric.com/clk?src=27705d9eff"></iframe>
+  </div>
+
+  <div class="right">
+    <div class="box">
+
+
+  <div class="badge">AUTO WEBSITE</div>
+
+  <h1>Get Your ID Now</h1>
+
+  <p class="sub">
+    Fast auto website service with easy deposit support.
+    New users can start quickly through WhatsApp.
+  </p>
+
+  <div class="features">www.icecric.com
+
+    <div class="feature">
+      Minimum Deposit: <span>₹100 Only</span>
     </div>
 
-    <a href="#" class="destination">
-      MEDIA
-    </a>
-
-    <p class="description">
-      We couldn't retrieve information about this page, but we're
-      reviewing the link for your safety.
-    </p>
-
-    <div class="security-box">
-
-      <div class="security-title">
-        Security check
-      </div>
-
-      <div class="security-item">
-        <span class="icon">
-          <span class="shield"></span>
-        </span>
-        <span>Security scan completed</span>
-      </div>
-
-      <div class="security-item">
-        <span class="icon">
-          <span class="eye"></span>
-        </span>
-        <span>Links monitored for suspicious behavior</span>
-      </div>
-
-      <div class="security-item">
-        <span class="icon check">✓</span>
-        <span>No threats detected at this time</span>
-      </div>
-
+    <div class="feature">
+      Welcome Bonus: <span>10%</span>
     </div>
 
-    <button class="continue-btn" onclick="continueToSite()">
-      Continue to destination
-      <span class="arrow">→</span>
-    </button>
+    <div class="feature">
+      Auto Website Support:
+      <a
+        class="signup-btn"
+        href="https://icecric.com/clk?src=27705d9eff"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Click on Signup
+      </a>
+    </div>
 
-    <div class="redirect">
-      You'll be redirected in <span id="countdown">2</span> seconds...
+    <div class="feature">
+      Quick Help:
+      <span>Deposit &amp; Withdrawal Support</span>
     </div>
 
   </div>
 
-  <script>
-    let seconds = 2;
+  <div class="website-row">
 
-    const countdown = document.getElementById("countdown");
+    <a
+      class="website"
+      href="https://icecric.com/clk?src=27705d9eff"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🌐 www.icecric.com
+    </a>
 
-    const timer = setInterval(() => {
-      seconds--;
+    <a
+      class="whatsapp-small"
+      href="https://wa.me/447542915762"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💬 WhatsApp
+    </a>
 
-      countdown.textContent = seconds;
+  </div>
 
-      if (seconds <= 0) {
-        clearInterval(timer);
-        // Put your legitimate destination URL here if needed.
-        // window.location.href = "https://example.com";
-      }
-    }, 1000);
+  <a
+    class="cta"
+    href="https://wa.me/447542915762?text=Hello%20I%20want%20new%20Icecric%20ID"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    📲 WhatsApp Now
+  </a>
 
-    function continueToSite() {
-      // Put your legitimate destination URL here.
-      window.location.href = "https://example.com";
-    }
-  </script>
+  <p class="trust">
+    ✅ Trusted Manual Support<br>
+    ✅ Simple Process<br>
+    ✅ Fast Response
+  </p>
+
+  <div class="footer">
+    18+ Only | Play Responsibly | Follow Your Local Laws | T&amp;C Apply
+  </div>
+
+</div>
+
+
+  </div>
+
+</div>
 
 </body>
 </html>
